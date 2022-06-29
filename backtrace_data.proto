@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package backtrace_data;
+package codectrl.data.backtrace_data;
 
 message BacktraceData {
   string name = 1;

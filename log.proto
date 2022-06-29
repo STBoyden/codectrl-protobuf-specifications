@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package log;
+package codectrl.data.log;
 
 import "backtrace_data.proto";
 

@@ -1,7 +1,7 @@
 
 syntax = "proto3";
 
-package logs_service;
+package codectrl.logs_service;
 
 import "log.proto";
 
@@ -19,13 +19,13 @@ message ReceivedResult {
 
 service LogServer {
   // Implemented and used by the GUI
-  rpc GetLog(Empty) returns (log.Log) {}
-  rpc GetLogs(Empty) returns (stream log.Log) {}
+  rpc GetLog(Empty) returns (data.log.Log) {}
+  rpc GetLogs(Empty) returns (stream data.log.Log) {}
 }
 
 service LogClient {
   // Implemented and used by each language logger
-  rpc SendLog(log.Log) returns (ReceivedResult) {}
-  rpc SendLogs(stream log.Log) returns (ReceivedResult) {}
+  rpc SendLog(data.log.Log) returns (ReceivedResult) {}
+  rpc SendLogs(stream data.log.Log) returns (ReceivedResult) {}
 }
 
