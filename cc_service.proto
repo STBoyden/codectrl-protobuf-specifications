@@ -17,14 +17,13 @@ message ReceivedResult {
   Received status = 2;
 }
 
-service LogsServer {
+service LogServer {
   // Implemented and used by the GUI
   rpc GetLog(Empty) returns (log.Log) {}
   rpc GetLogs(Empty) returns (stream log.Log) {}
-
 }
 
-service LogsClient {
+service LogClient {
   // Implemented and used by each language logger
   rpc SendLog(log.Log) returns (ReceivedResult) {}
   rpc SendLogs(stream log.Log) returns (ReceivedResult) {}
