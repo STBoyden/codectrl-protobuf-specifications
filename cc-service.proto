@@ -1,0 +1,29 @@
+
+syntax = "proto3";
+
+package logs_service;
+
+import "log.proto";
+
+message Empty {}
+
+enum Received {
+  CONFIRMED = 0;
+  ERROR = 1;
+}
+
+message ReceivedResult {
+  string message = 1;
+  Received status = 2;
+}
+
+service Logs {
+  // Implemented and used by the GUI
+  rpc GetLog(Empty) returns (log.Log) {}
+  rpc GetLogs(Empty) returns (stream log.Log) {}
+
+  // Implemented and used by each language logger
+  rpc SendLog(log.Log) returns (ReceivedResult) {}
+  rpc SendLogs(stream log.Log) returns (ReceivedResult) {}
+}
+

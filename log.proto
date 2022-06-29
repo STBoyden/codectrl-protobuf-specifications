@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package log;
+
+import "backtrace_data.proto";
+
+message Log {
+  repeated backtrace_data.BacktraceData stack = 1;
+  uint32 lineNumber = 2;
+  map<string, string> codeSnippet = 3;
+  string message = 4;
+  string messageType = 5;
+  string fileName = 6;
+  string address = 7;
+  string language = 8;
+  repeated string warnings = 9;
+}
