@@ -12,6 +12,10 @@ enum Received {
   ERROR = 1;
 }
 
+message Connection {
+  string uuid = 1;
+}
+
 message ReceivedResult {
   string message = 1;
   Received status = 2;
@@ -19,8 +23,10 @@ message ReceivedResult {
 
 service LogServer {
   // Implemented and used by the GUI
-  rpc GetLog(Empty) returns (data.log.Log) {}
-  rpc GetLogs(Empty) returns (stream data.log.Log) {}
+  rpc GetLog(Connection) returns (data.log.Log) {}
+  rpc GetLogs(Connection) returns (stream data.log.Log) {}
+
+  rpc RegisterClient(Empty) returns (Connection) {}
 }
 
 service LogClient {
