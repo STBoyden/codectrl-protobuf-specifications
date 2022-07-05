@@ -17,9 +17,9 @@ enum RequestStatus {
 }
 
 // Describes the connection between the interface and a given server. Each
-// client is suppllied with a uuid that is saved to disk or to localStorage.
-// The server uses this information to determine which logs should be sent to
-// each client and to skip duplicate identified by the `uuid` of the log.
+// client is supplied with a uuid that is saved to disk or to localStorage. The
+// server uses this information to determine which logs should be sent to each
+// client and to skip duplicate identified by the `uuid` of the log.
 message Connection {
   string uuid = 1;
 }
@@ -28,6 +28,14 @@ message Connection {
 message RequestResult {
   string        message = 1;
   RequestStatus status  = 2;
+}
+
+
+// Server details about the current gRPC server.
+message ServerDetails {
+  string host   = 1;
+  uint32 port   = 2;
+  uint64 uptime = 3;
 }
 
 // LogServer is the service that should only be implemented by log servers
@@ -43,6 +51,9 @@ service LogServer {
   // Gets a stream of the available logs, this should be preferred over
   // `GetLog` when possible.
   rpc GetLogs(Connection)                returns (stream data.log.Log) {}
+
+  // Gets the current details about the server.
+  rpc GetServerDetails(Empty)            returns (ServerDetails) {}
 
   // Registers a new front-end connection to a server instance and returns the
   // `Connection` message with a `uuid`.
