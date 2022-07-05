@@ -4,11 +4,8 @@ syntax = "proto3";
 package codectrl.logs_service;
 
 import "log.proto";
+import "google/protobuf/empty.proto";
 
-// Empty is needed because protobuf has no concept of a `()` (unit type) or
-// void type, every rpc needs to have at least one argument, so `Empty` is
-// provided when no argument is required.
-message Empty {}
 
 // Status codes for whether or not a particular request has succeeded.
 enum RequestStatus {
@@ -46,24 +43,24 @@ message ServerDetails {
 service LogServer {
   // Gets the latest log from the server, generally not used but is here for
   // compatibiliy's sake in the case where a front-end cannot use a stream.
-  rpc GetLog(Connection)                 returns (data.log.Log)        {}
+  rpc GetLog(Connection)                                 returns (data.log.Log)        {}
 
   // Gets a stream of the available logs, this should be preferred over
   // `GetLog` when possible.
-  rpc GetLogs(Connection)                returns (stream data.log.Log) {}
+  rpc GetLogs(Connection)                                returns (stream data.log.Log) {}
 
   // Gets the current details about the server.
-  rpc GetServerDetails(Empty)            returns (ServerDetails) {}
+  rpc GetServerDetails(google.protobuf.Empty)            returns (ServerDetails)       {}
 
   // Registers a new front-end connection to a server instance and returns the
   // `Connection` message with a `uuid`.
-  rpc RegisterClient(Empty)              returns (Connection)          {}
+  rpc RegisterClient(google.protobuf.Empty)              returns (Connection)          {}
 
   // Registers an already pre-existing connection to a server instance using an
   // already generated `uuid` supplied in the `Connection`. Servers should
   // verify that the supplied `uuid` is, in fact, a valid hyphenated v4 UUID.
   // Returns a boolean whether or not the registration was succesful.
-  rpc RegisterExistingClient(Connection) returns (RequestResult)       {}
+  rpc RegisterExistingClient(Connection)                 returns (RequestResult)       {}
 }
 
 // LogClient is the service that needs to be implemented by log servers so
