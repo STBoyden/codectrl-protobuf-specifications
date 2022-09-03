@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package codectrl.auth_service;
 
+import "google/protobuf/empty.proto";
+
 enum TokenIntent {
   LOGGER   = 0;
   FRONTEND = 1;
@@ -65,10 +67,8 @@ message GenerateTokenRequestResult {
   optional Token                 token  = 2;
 }
 
-message GhLogin{}
-
 message LoginUrl{
-    string url =1;
+  string url = 1;
 }
 
 service Authentication {
@@ -80,5 +80,5 @@ service Authentication {
   rpc GenerateToken(GenerateTokenRequest) returns (GenerateTokenRequestResult) {}
   rpc RevokeToken(Token)                  returns (RevokeTokenRequestResult) {}
   rpc RefreshToken(Token)                 returns (Token) {}
-  rpc GithubLogin(GhLogin)                returns (LoginUrl) {}
+  rpc GitHubLogin(google.protobuf.Empty)  returns (LoginUrl) {}
 }
