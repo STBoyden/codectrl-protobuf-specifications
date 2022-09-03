@@ -65,6 +65,12 @@ message GenerateTokenRequestResult {
   optional Token                 token  = 2;
 }
 
+message GhLogin{}
+
+message LoginUrl{
+    string url =1;
+}
+
 service Authentication {
   // Takes a token and verifies that it is:
   //    a) In valid format
@@ -74,4 +80,5 @@ service Authentication {
   rpc GenerateToken(GenerateTokenRequest) returns (GenerateTokenRequestResult) {}
   rpc RevokeToken(Token)                  returns (RevokeTokenRequestResult) {}
   rpc RefreshToken(Token)                 returns (Token) {}
+  rpc GithubLogin(GhLogin)                returns (LoginUrl) {}
 }
