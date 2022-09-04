@@ -80,5 +80,5 @@ service Authentication {
   rpc GenerateToken(GenerateTokenRequest) returns (GenerateTokenRequestResult) {}
   rpc RevokeToken(Token)                  returns (RevokeTokenRequestResult) {}
   rpc RefreshToken(Token)                 returns (Token) {}
-  rpc GitHubLogin(google.protobuf.Empty)  returns (LoginUrl) {}
+  rpc GithubLogin(google.protobuf.Empty)  returns (LoginUrl) {}
 }
