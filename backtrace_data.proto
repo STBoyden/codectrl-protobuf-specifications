@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package codectrl.data.backtrace_data;
+option go_package = "github.com/Authentura/codectrl-go-protobufs/data/backtrace_data";
 
 // Generalised message containing information regarding a single stacktrace
 // item.
