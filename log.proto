@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package codectrl.data.log;
-option go_package = "github.com/Authentura/codectrl-go-protobufs/data/log";
+option go_package = "github.com/STBoyden/codectrl-go-protobufs/data/log";
 
 import "backtrace_data.proto";
 

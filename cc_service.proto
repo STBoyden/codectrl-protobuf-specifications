@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package codectrl.logs_service;
-option go_package = "github.com/Authentura/codectrl-go-protobufs/logs_service";
+option go_package = "github.com/STBoyden/codectrl-go-protobufs/logs_service";
 
 import "log.proto";
 import "auth.proto";
